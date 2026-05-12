@@ -24,6 +24,7 @@ namespace BankingSystem
             double withdrawal;
             double annualRate;
             double avgBalance;
+            int chioce = -1;
 
             //Task 1 · System Setup — Run This First
             //options 1-13
@@ -164,49 +165,96 @@ namespace BankingSystem
                 option = int.Parse(Console.ReadLine());
 
             }
+            // to duple check it is zero(user entered zero)
+            if (option == 0) {
+                Console.WriteLine("Setup complete. Launching Main Menu...");
+               
+                //main menue of the bank system
+                Console.WriteLine("NATIONAL BANK OF OMAN — Unified Banking System");
+                Console.WriteLine("MAIN MENU: ");
+                Console.WriteLine("1) ATM Services");
+                Console.WriteLine("2) Account Management");
+                Console.WriteLine("3) Loan Services");
+                Console.WriteLine("4) Currency Exchange");
+                Console.WriteLine("5) Credit Card Portal");
+                Console.WriteLine("6) Branch Services");
+                Console.WriteLine("7) Reports & Admin");
+                Console.WriteLine("8) Full Terminal");
+                Console.WriteLine("0) Exit");
 
+                // request the module number from customer
+                Console.Write("Select module of main service: ");
+                module = int.Parse(Console.ReadLine());
+                while (module != 0) {
 
+                    switch (module) {
+                        case 1:
+                            Console.WriteLine("=== ATM Services ===");
+                            Console.WriteLine("1) Bank Info");
+                            Console.WriteLine("2) Branch Info");
+                            Console.WriteLine("3) Opening Hours");
+                            Console.WriteLine("0) Back to Main Menu");
+                            Console.Write("Select: ");
+                            chioce = int.Parse(Console.ReadLine());
+                            //while(chioce>=0 && chioce<=3)
+                            switch (chioce) {
+                                
+                                case 1:
+                                    Console.WriteLine("Bank Name: National Bank of Oman");
+                                    Console.WriteLine("Tagline: Trusted banking for a stronger tomorrow.");
+                                    Console.WriteLine("Founding Year: 1973");
+                                    break;
 
+                                case 2:
+                                    Console.WriteLine("Branch Name: Ruwi Main Branch");
+                                    Console.WriteLine("City:Muscat ");
+                                    Console.WriteLine("Address: Ruwi High Street, Near Commercial Area, Muscat, Oman");
+                                    break;
 
+                                case 3:
+                                    Console.WriteLine("Weekdays (Sunday – Thursday) \n 8:00 AM – 2:00 PM ");
+                                    Console.WriteLine("Weekend (Friday & Saturday): Closed");
+                                    break;
 
+                                case 0:
+                                    Console.WriteLine("Returning to Main Menu...");
 
+                                    break;
 
+                                default:
+                                    Console.WriteLine("Invalid selection. Please try again.");
+                                    break;
 
+                            }//inner switch
+                            break;
 
+                        //case 2:
 
+                        //    break;
+                    }// outer switch
 
+                    // choice is the common variable and means go back to main menue in all cases 
+                    if (chioce == 0)
+                    {
+                        Console.WriteLine("MAIN MENU: ");
+                        Console.WriteLine("1) ATM Services");
+                        Console.WriteLine("2) Account Management");
+                        Console.WriteLine("3) Loan Services");
+                        Console.WriteLine("4) Currency Exchange");
+                        Console.WriteLine("5) Credit Card Portal");
+                        Console.WriteLine("6) Branch Services");
+                        Console.WriteLine("7) Reports & Admin");
+                        Console.WriteLine("8) Full Terminal");
+                        Console.WriteLine("0) Exit");
+                        Console.Write("Select module of main service: ");
+                        module = int.Parse(Console.ReadLine());
+                    }
+                    // to avoid infinit loop cause will stack in the same module number
+                    else break;
+                }//while
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-            //main menue of the bank system
-            Console.WriteLine("NATIONAL BANK OF OMAN — Unified Banking System");
-            Console.WriteLine("MAIN MENU: ");
-            Console.WriteLine("1) ATM Services");
-            Console.WriteLine("2) Account Management");
-            Console.WriteLine("3) Loan Services");
-            Console.WriteLine("4) Currency Exchange");
-            Console.WriteLine("5) Credit Card Portal");
-            Console.WriteLine("6) Branch Services");
-            Console.WriteLine("7) Reports & Admin");
-            Console.WriteLine("8) Full Terminal");
-            Console.WriteLine("0) Exit");
-
-            // request the module namber from customer
-            Console.Write("Select module: ");
-            module = int.Parse(Console.ReadLine());
-            */
+            }//if
+           
         }
     }
 }
