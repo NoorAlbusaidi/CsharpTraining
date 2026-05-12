@@ -12,19 +12,19 @@ namespace BankingSystem
             int module;
             int option;
             int accountNumber = 0;
-            string holderName;
-            double balance;
+            string holderName = "";
+            double balance = 0.000;
             bool isActive = false;
-            char accountType;
+            char accountType = '-';
             bool isEmployed = false;
             double salary;
-            int creditScore;
+            int creditScore = 0;
             int age;
-            double deposit;
-            double withdrawal;
-            double annualRate;
-            double avgBalance;
-            int chioce = -1;
+            double deposit = 0.000;
+            double withdrawal = 0.000;
+            double annualRate =  0.000;
+            double avgBalance =  0.000;
+            int choice = -1;
 
             //Task 1 · System Setup — Run This First
             //options 1-13
@@ -195,9 +195,9 @@ namespace BankingSystem
                             Console.WriteLine("3) Opening Hours");
                             Console.WriteLine("0) Back to Main Menu");
                             Console.Write("Select: ");
-                            chioce = int.Parse(Console.ReadLine());
+                            choice = int.Parse(Console.ReadLine());
                             //while(chioce>=0 && chioce<=3)
-                            switch (chioce) {
+                            switch (choice) {
                                 
                                 case 1:
                                     Console.WriteLine("Bank Name: National Bank of Oman");
@@ -228,13 +228,57 @@ namespace BankingSystem
                             }//inner switch
                             break;
 
-                        //case 2:
+                        case 2:
+                            Console.WriteLine("=== view account data ===");
+                            Console.WriteLine("1) Account Number");
+                            Console.WriteLine("2) Holder Name");
+                            Console.WriteLine("3) Balance");
+                            Console.WriteLine("4) Status");
+                            Console.WriteLine("5) Account Type");
+                            Console.WriteLine("0) Back to main menue");
+                            Console.Write("Select field: ");
+                            choice = int.Parse(Console.ReadLine());
+                            switch (choice) {
+                                case 1:
+                                    Console.WriteLine("Account Number ---> " + accountNumber);
+                                    break;
 
-                        //    break;
+                                case 2:
+                                    Console.WriteLine("Holder Name ---> " + holderName);
+                                    break;
+
+                                case 3:
+                                    Console.WriteLine("Balance ---> " + balance + " OMR");
+                                    break;
+
+                                case 4:
+                                    if (isActive)
+                                    Console.WriteLine(" acount Status ---> active" );
+                                    else
+                                    Console.WriteLine(" acount Status ---> inactive");
+                                    break;
+
+                                case 5:
+                                    Console.WriteLine("Account Type ---> " + accountType);
+                                    break;
+
+                                case 0:
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Field not available.");
+                                    break;
+                            }
+                            break;
+
+                        case 3:
+
+                            break;
+
                     }// outer switch
 
                     // choice is the common variable and means go back to main menue in all cases 
-                    if (chioce == 0)
+                    if (choice == 0)
                     {
                         Console.WriteLine("MAIN MENU: ");
                         Console.WriteLine("1) ATM Services");
