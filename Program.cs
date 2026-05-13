@@ -27,6 +27,7 @@ namespace BankingSystem
             double annualRate =  0.000;
             double avgBalance =  0.000;
             int choice = -1;
+            int Backchoice2 = -1;
 
             //Task 1 · System Setup — Run This First
             //options 1-13
@@ -424,12 +425,57 @@ namespace BankingSystem
                         break; //break of case 1 (module 1)
                         case 2: // account management
                             Console.WriteLine("=== Account management Services ===");
-                            Console.WriteLine("1- TX calculator");
+                            Console.WriteLine("1- Transaction calculator");
                             Console.WriteLine("2- Account Types");
                             Console.WriteLine("3- Loan eligability");
                             Console.Write("Selected Account management service: ");
                             int AMSChoice = int.Parse(Console.ReadLine());
-                            //switch{ }
+                            switch(AMSChoice)
+                            {
+                                // Transaction calculator
+                                case 1:
+                                    Console.WriteLine("=== Transaction calculator ===");
+                                    Console.WriteLine(" 1) After Deposit");
+                                    Console.WriteLine(" 2) After Withdrawal");
+                                    Console.WriteLine(" 3) Annual Interest");
+                                    Console.WriteLine(" 4) Net Change");
+                                    Console.WriteLine(" 0) Back");
+                                    Console.Write("Select calculation: ");
+                                    Backchoice2 = int.Parse(Console.ReadLine());
+                                    switch (Backchoice2) {
+                                        case 1:
+                                            balance = balance + deposit;
+                                            Console.WriteLine("Balance after deposite is: " + balance);
+                                            break;
+                                        case 2:
+                                            if (withdrawal <= balance)
+                                            {
+                                                balance = balance - withdrawal;
+                                                Console.WriteLine("Balance after deposite is: " + balance);
+                                            }
+                                            else Console.WriteLine("cannot be done your Balance less than the withdrawal amount");
+                                            break;
+                                        case 3:
+                                            
+                                            double interest = balance * annualRate;
+                                            Console.WriteLine("the rate applied: "+ annualRate);
+                                            Console.WriteLine("the interest: " + interest);
+                                            break;
+                                        case 4:
+                                            double net = deposit - withdrawal;
+                                            if (net >= 0)
+                                                Console.WriteLine("Surplus");
+                                            else Console.WriteLine("Deficit");
+                                            break;
+                                        case 5:
+                                            break; //later on will handle the return back case
+                                        default:
+                                            Console.WriteLine("Calculation not available");
+                                            break;
+                                            //break;
+                                    }// inner switch Transaction calculator
+                                    break; 
+                            } // outer switch account management case 2
 
                             break;
                             }// outer switch of module
