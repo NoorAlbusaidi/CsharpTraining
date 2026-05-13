@@ -467,7 +467,7 @@ namespace BankingSystem
                                                 Console.WriteLine("Surplus");
                                             else Console.WriteLine("Deficit");
                                             break;
-                                        case 5:
+                                        case 0:
                                             break; //later on will handle the return back case
                                         default:
                                             Console.WriteLine("Calculation not available");
