@@ -104,12 +104,12 @@ namespace BankingSystem
                     case 6:
                         Console.Write("Are you employed? [enter 1=yes / 0=no]: ");
                         int employState = int.Parse(Console.ReadLine());
-                        if (employState == 0)
+                        if (employState == 1)
                         {
                             isEmployed = false;
                             Console.WriteLine("Employed");
                         }
-                        else if (employState == 1)
+                        else if (employState == 0)
                         {
                             isEmployed = true;
                             Console.WriteLine("Unemployed");
@@ -164,10 +164,40 @@ namespace BankingSystem
                 
 
                 }
+                //to clear the console after every option
+                Console.WriteLine("press any key to contiue");
+                Console.ReadLine();
+                Console.Clear();
+
+                Console.WriteLine("=== SYSTEM SETUP — Enter Account & Customer Data ===");
+                Console.WriteLine("--- Account Profile ---");
+                Console.WriteLine("1) Account Number");
+                Console.WriteLine("2) Holder Name");
+                Console.WriteLine("3) Balance");
+                Console.WriteLine("4) Account Active?");
+                Console.WriteLine("5) Account Type");
+                Console.WriteLine();
+                Console.WriteLine("--- Customer Profile ---");
+                Console.WriteLine("6) Employed?");
+                Console.WriteLine("7) Monthly Salary");
+                Console.WriteLine("8) Credit Score");
+                Console.WriteLine("9) Age");
+                Console.WriteLine();
+                Console.WriteLine("--- Transaction Data ---");
+                Console.WriteLine("10) Last Deposit Amount");
+                Console.WriteLine("11) Last Withdrawal");
+                Console.WriteLine("12) Annual Interest Rate");
+                Console.WriteLine("13) Avg Monthly Balance");
+                Console.WriteLine("0) Setup complete — launch Main Menu");
+
                 Console.Write("select option: ");
                 option = int.Parse(Console.ReadLine());
 
+
+
             }
+
+
             // to duple check it is zero(user entered zero)
             if (option == 0) {
                 Console.WriteLine("Setup complete. Launching Main Menu...");
