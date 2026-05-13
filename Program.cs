@@ -189,226 +189,252 @@ namespace BankingSystem
                 module = int.Parse(Console.ReadLine());
                 while (module != 0) {
 
-                    switch (module) {
+                    switch (module)
+                    {
                         // atm services
                         case 1:
-                            
+
                             Console.WriteLine("=== ATM Services ===");
-                            Console.WriteLine("1) Bank Info");
-                            Console.WriteLine("2) Branch Info");
-                            Console.WriteLine("3) Opening Hours");
-                            Console.WriteLine("0) Back to Main Menu");
-                            Console.Write("Select: ");
-                            choice = int.Parse(Console.ReadLine());
-                          
-                            switch (choice) {
-                                
+                            Console.WriteLine("1- general info");
+                            Console.WriteLine("2- view account data");
+                            Console.WriteLine("3- PIN validation");
+                            Console.WriteLine("4- Receipt printer");
+                            Console.Write("Selected ATM service: ");
+                            int ATMserviceChoice = int.Parse(Console.ReadLine());
+                            switch (ATMserviceChoice)
+                            {
                                 case 1:
-                                    Console.WriteLine("Bank Name: National Bank of Oman");
-                                    Console.WriteLine("Tagline: Trusted banking for a stronger tomorrow.");
-                                    Console.WriteLine("Founding Year: 1973");
+                                    Console.WriteLine("=== General info ===");
+                                    Console.WriteLine("1) Bank Info");
+                                    Console.WriteLine("2) Branch Info");
+                                    Console.WriteLine("3) Opening Hours");
+                                    Console.WriteLine("0) Back to Main Menu");
+                                    Console.Write("Select: ");
+                                    choice = int.Parse(Console.ReadLine());
+
+                                    switch (choice)
+                                    {
+
+                                        case 1:
+                                            Console.WriteLine("Bank Name: National Bank of Oman");
+                                            Console.WriteLine("Tagline: Trusted banking for a stronger tomorrow.");
+                                            Console.WriteLine("Founding Year: 1973");
+                                            break;
+
+                                        case 2:
+                                            Console.WriteLine("Branch Name: Ruwi Main Branch");
+                                            Console.WriteLine("City:Muscat ");
+                                            Console.WriteLine("Address: Ruwi High Street, Near Commercial Area, Muscat, Oman");
+                                            break;
+
+                                        case 3:
+                                            Console.WriteLine("Weekdays (Sunday – Thursday) \n 8:00 AM – 2:00 PM ");
+                                            Console.WriteLine("Weekend (Friday & Saturday): Closed");
+                                            break;
+
+                                        case 0:
+                                            Console.WriteLine("Returning to Main Menu...");
+
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Invalid selection. Please try again.");
+                                            break;
+
+                                    }//inner switch
                                     break;
 
                                 case 2:
-                                    Console.WriteLine("Branch Name: Ruwi Main Branch");
-                                    Console.WriteLine("City:Muscat ");
-                                    Console.WriteLine("Address: Ruwi High Street, Near Commercial Area, Muscat, Oman");
+                                    Console.WriteLine("=== view account data ===");
+                                    Console.WriteLine("1) Account Number");
+                                    Console.WriteLine("2) Holder Name");
+                                    Console.WriteLine("3) Balance");
+                                    Console.WriteLine("4) Status");
+                                    Console.WriteLine("5) Account Type");
+                                    Console.WriteLine("0) Back to main menue");
+                                    Console.Write("Select field: ");
+                                    choice = int.Parse(Console.ReadLine());
+                                    switch (choice)
+                                    {
+                                        case 1:
+                                            Console.WriteLine("Account Number ---> " + accountNumber);
+                                            break;
+
+                                        case 2:
+                                            Console.WriteLine("Holder Name ---> " + holderName);
+                                            break;
+
+                                        case 3:
+                                            Console.WriteLine("Balance ---> " + balance + " OMR");
+                                            break;
+
+                                        case 4:
+                                            if (isActive)
+                                                Console.WriteLine(" acount Status ---> active");
+                                            else
+                                                Console.WriteLine(" acount Status ---> inactive");
+                                            break;
+
+                                        case 5:
+                                            Console.WriteLine("Account Type ---> " + accountType);
+                                            break;
+
+                                        case 0:
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Field not available.");
+                                            break;
+                                    }//inner switch
                                     break;
 
                                 case 3:
-                                    Console.WriteLine("Weekdays (Sunday – Thursday) \n 8:00 AM – 2:00 PM ");
-                                    Console.WriteLine("Weekend (Friday & Saturday): Closed");
-                                    break;
+                                    const string CORRECT_PIN = "4821";
+                                    const int MAX_ATTEMPTS = 3;
+                                    Console.WriteLine("=== Authentication ===");
+                                    Console.WriteLine("1)  Enter PIN");
+                                    Console.WriteLine("2) Forgot PIN");
+                                    Console.WriteLine("0) Back to main menue");
+                                    Console.Write("Select: ");
+                                    choice = int.Parse(Console.ReadLine());
 
-                                case 0:
-                                    Console.WriteLine("Returning to Main Menu...");
+                                    switch (choice)
+                                    {
+                                        case 1:
 
-                                    break;
+                                            Console.Write("Enter your PIN: ");
+                                            string pinInput = "";
 
-                                default:
-                                    Console.WriteLine("Invalid selection. Please try again.");
-                                    break;
+                                            //ConsoleKeyInfo (get information about the pressed key) = object that contains details about the key.
+                                            ConsoleKeyInfo key;
+                                            do
+                                            {
+                                                //Waits for the user to press one key. true: don’t display it
+                                                key = Console.ReadKey(true);
+                                                //KeyChar:  letters / numbers
+                                                // to not accept other than numbers and letters
+                                                if (char.IsLetterOrDigit(key.KeyChar))
+                                                {
+                                                    pinInput += key.KeyChar;
+                                                    Console.Write("*");
+                                                }
 
-                            }//inner switch
-                            break;
+                                                /*
+                                                Keep repeating until the user presses Enter
+                                                key.Key = The key the user pressed. key.key to detect the special char like enter
+                                                Represents the Enter key
+                                                */
+                                            } while (key.Key != ConsoleKey.Enter);
 
-                        case 2:
-                            Console.WriteLine("=== view account data ===");
-                            Console.WriteLine("1) Account Number");
-                            Console.WriteLine("2) Holder Name");
-                            Console.WriteLine("3) Balance");
-                            Console.WriteLine("4) Status");
-                            Console.WriteLine("5) Account Type");
-                            Console.WriteLine("0) Back to main menue");
-                            Console.Write("Select field: ");
-                            choice = int.Parse(Console.ReadLine());
-                            switch (choice) {
-                                case 1:
-                                    Console.WriteLine("Account Number ---> " + accountNumber);
-                                    break;
+                                            Console.WriteLine();
+                                            if (pinInput == CORRECT_PIN)
+                                                Console.WriteLine("Access granted. Welcome, " + holderName);
+                                            else if (pinInput.Length != 4)
+                                                Console.WriteLine("Invalid PIN format ");
+                                            else
+                                                Console.WriteLine("Incorrect PIN ");
+                                            break;
 
-                                case 2:
-                                    Console.WriteLine("Holder Name ---> " + holderName);
-                                    break;
-
-                                case 3:
-                                    Console.WriteLine("Balance ---> " + balance + " OMR");
+                                        case 2:
+                                            Console.WriteLine("Please visit the nearest branch with your National ID.");
+                                            break;
+                                        case 0:
+                                            break;
+                                    }//inner switch
                                     break;
 
                                 case 4:
-                                    if (isActive)
-                                    Console.WriteLine(" acount Status ---> active" );
-                                    else
-                                    Console.WriteLine(" acount Status ---> inactive");
-                                    break;
+                                    Console.WriteLine("=== PRINT RECEIPT ===");
+                                    Console.WriteLine("1)  Short Receipt");
+                                    Console.WriteLine("2)  Detailed Receip");
+                                    Console.WriteLine("3)  Balance Only");
+                                    Console.WriteLine("0) Back to main menue");
+                                    Console.Write("Select format: ");
+                                    choice = int.Parse(Console.ReadLine());
+                                    switch (choice)
+                                    {
+                                        case 1:
+                                            Console.WriteLine(" holder Name: " + holderName);
+                                            string receiptAccountNumber = accountNumber.ToString();
+                                            string last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
+                                            string stars = "";
+                                            for (int i = 0; i < (receiptAccountNumber.Length - 4); i++)
+                                            {
+                                                stars += "*";
+                                            }
+                                            string starsLast4 = stars + last4;
+                                            Console.WriteLine(" The account number: " + starsLast4);
+                                            Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
+                                            break;
 
-                                case 5:
-                                    Console.WriteLine("Account Type ---> " + accountType);
-                                    break;
+                                        case 2:
+                                            Console.WriteLine(" holder Name: " + holderName);
+                                            receiptAccountNumber = accountNumber.ToString();
+                                            last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
+                                            stars = "";
+                                            for (int i = 0; i < (receiptAccountNumber.Length - 4); i++)
+                                            {
+                                                stars += "*";
+                                            }
+                                            starsLast4 = stars + last4;
+                                            Console.WriteLine(" The account number: " + starsLast4);
+                                            Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
+                                            Console.WriteLine("Account Type set to: " + accountType);
+                                            Console.WriteLine("The age set to: " + age);
+                                            Console.WriteLine("The credit Score set to: " + creditScore);
+                                            Console.WriteLine("The avg monthly balance set to: " + avgBalance.ToString("F3") + " OMR");
+                                            Console.WriteLine("The annual interest rate set to: " + annualRate.ToString("F3") + " OMR");
+                                            Console.WriteLine("The last withdrawal amount set to: " + withdrawal.ToString("F3") + " OMR");
+                                            Console.WriteLine("The last deposit amount set to: " + deposit.ToString("F3") + " OMR");
+                                            if (isEmployed)
+                                                Console.WriteLine("Employed");
+                                            else
+                                                Console.WriteLine("Unemployed");
+                                            break;
 
-                                case 0:
-                                    break;
+                                        case 3:
+                                            Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
+                                            break;
 
+
+
+                                    }
+                                    break;
                                 default:
-                                    Console.WriteLine("Field not available.");
                                     break;
-                            }//inner switch
-                            break;
-
-                        case 3:
-                            const string CORRECT_PIN = "4821";
-                            const int MAX_ATTEMPTS = 3;
-                            Console.WriteLine("=== Authentication ===");
-                            Console.WriteLine("1)  Enter PIN");
-                            Console.WriteLine("2) Forgot PIN");
-                            Console.WriteLine("0) Back to main menue");
-                            Console.Write("Select: ");
-                            choice = int.Parse(Console.ReadLine());
-
-                            switch (choice) {
-                                case 1:
-                                    
-                                    Console.Write("Enter your PIN: ");
-                                    string pinInput = "";
-
-                                    //ConsoleKeyInfo (get information about the pressed key) = object that contains details about the key.
-                                    ConsoleKeyInfo key;
-                                    do
-                                    {
-                                        //Waits for the user to press one key. true: don’t display it
-                                        key = Console.ReadKey(true);
-                                        //KeyChar:  letters / numbers
-                                        // to not accept other than numbers and letters
-                                        if (char.IsLetterOrDigit(key.KeyChar))
-                                        {
-                                            pinInput += key.KeyChar;
-                                            Console.Write("*");
-                                        }
-                                        
-                                        /*
-                                        Keep repeating until the user presses Enter
-                                        key.Key = The key the user pressed. key.key to detect the special char like enter
-                                        Represents the Enter key
-                                        */
-                                    } while (key.Key != ConsoleKey.Enter);
-
-                                    Console.WriteLine();
-                                    if (pinInput == CORRECT_PIN)
-                                        Console.WriteLine("Access granted. Welcome, " + holderName);
-                                    else if (pinInput.Length != 4)
-                                        Console.WriteLine("Invalid PIN format ");
-                                    else
-                                        Console.WriteLine("Incorrect PIN ");
-                                    break;
-
-                                case 2:
-                                    Console.WriteLine("Please visit the nearest branch with your National ID.");
-                                    break;
-                                case 0:
-                                    break;
-                            }//inner switch
-                            break;
-
-                        case 4:
-                            Console.WriteLine("=== PRINT RECEIPT ===");
-                            Console.WriteLine("1)  Short Receipt");
-                            Console.WriteLine("2)  Detailed Receip");
-                            Console.WriteLine("3)  Balance Only");
-                            Console.WriteLine("0) Back to main menue");
-                            Console.Write("Select format: ");
-                            choice = int.Parse(Console.ReadLine());
-                            switch (choice) {
-                                case 1:
-                                    Console.WriteLine(" holder Name: " + holderName);
-                                    string receiptAccountNumber = accountNumber.ToString();
-                                    string last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
-                                    string stars = "";
-                                    for (int i = 0; i < (receiptAccountNumber.Length-4); i++)
-                                    {
-                                        stars += "*";
-                                    }
-                                    string starsLast4 = stars + last4;
-                                    Console.WriteLine(" The account number: " + starsLast4);
-                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
-                                    break;
-
-                                case 2:
-                                    Console.WriteLine(" holder Name: " + holderName);
-                                    receiptAccountNumber = accountNumber.ToString();
-                                    last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
-                                     stars = "";
-                                    for (int i = 0; i < (receiptAccountNumber.Length - 4); i++)
-                                    {
-                                        stars += "*";
-                                    }
-                                     starsLast4 = stars + last4;
-                                    Console.WriteLine(" The account number: " + starsLast4);
-                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
-                                    Console.WriteLine("Account Type set to: " + accountType);
-                                    Console.WriteLine("The age set to: " + age);
-                                    Console.WriteLine("The credit Score set to: " + creditScore);
-                                    Console.WriteLine("The avg monthly balance set to: " + avgBalance.ToString("F3") + " OMR");
-                                    Console.WriteLine("The annual interest rate set to: " + annualRate.ToString("F3") + " OMR");
-                                    Console.WriteLine("The last withdrawal amount set to: " + withdrawal.ToString("F3") + " OMR");
-                                    Console.WriteLine("The last deposit amount set to: " + deposit.ToString("F3") + " OMR");
-                                    if(isEmployed)
-                                        Console.WriteLine("Employed");
-                                    else
-                                        Console.WriteLine("Unemployed");
-                                    break;
-
-                                case 3:
-                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
-                                    break;
-
-
-
+                            }//ATM services
+                            // choice is the common variable and 0 means go back to main menue in all cases 
+                            if (choice == 0)
+                            {
+                                Console.WriteLine("MAIN MENU: ");
+                                Console.WriteLine("1) ATM Services");
+                                Console.WriteLine("2) Account Management");
+                                Console.WriteLine("3) Loan Services");
+                                Console.WriteLine("4) Currency Exchange");
+                                Console.WriteLine("5) Credit Card Portal");
+                                Console.WriteLine("6) Branch Services");
+                                Console.WriteLine("7) Reports & Admin");
+                                Console.WriteLine("8) Full Terminal");
+                                Console.WriteLine("0) Exit");
+                                Console.Write("Select module of main service: ");
+                                module = int.Parse(Console.ReadLine());
                             }
+                            // to avoid infinit loop cause will stack in the same module number
+                            else break;
+                        break; //break of case 1 (module 1)
+                        case 2: // account management
+                            Console.WriteLine("=== Account management Services ===");
+                            Console.WriteLine("1- TX calculator");
+                            Console.WriteLine("2- Account Types");
+                            Console.WriteLine("3- Loan eligability");
+                            Console.Write("Selected Account management service: ");
+                            int AMSChoice = int.Parse(Console.ReadLine());
+                            //switch{ }
+
                             break;
-                    }// outer switch
-
-                    // choice is the common variable and means go back to main menue in all cases 
-                    if (choice == 0)
-                    {
-                        Console.WriteLine("MAIN MENU: ");
-                        Console.WriteLine("1) ATM Services");
-                        Console.WriteLine("2) Account Management");
-                        Console.WriteLine("3) Loan Services");
-                        Console.WriteLine("4) Currency Exchange");
-                        Console.WriteLine("5) Credit Card Portal");
-                        Console.WriteLine("6) Branch Services");
-                        Console.WriteLine("7) Reports & Admin");
-                        Console.WriteLine("8) Full Terminal");
-                        Console.WriteLine("0) Exit");
-                        Console.Write("Select module of main service: ");
-                        module = int.Parse(Console.ReadLine());
-                    }
-                    // to avoid infinit loop cause will stack in the same module number
-                    else break;
-                }//while
-
-            }//if
-           
+                            }// outer switch of module
+                    } // while module
+                }  // if   
         }
     }
 }
