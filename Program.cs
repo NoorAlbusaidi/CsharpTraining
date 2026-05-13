@@ -21,7 +21,7 @@ namespace BankingSystem
             bool isEmployed = false;
             double salary;
             int creditScore = 0;
-            int age;
+            int age = -1;
             double deposit = 0.000;
             double withdrawal = 0.000;
             double annualRate =  0.000;
@@ -75,7 +75,7 @@ namespace BankingSystem
                     case 3:
                         Console.Write("enter the balance: ");
                         balance = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Balance set to: " + balance);
+                        Console.WriteLine("Balance set to: " + balance.ToString("F3") + " OMR");
                         break;
 
                     case 4:
@@ -118,7 +118,7 @@ namespace BankingSystem
                     case 7:
                         Console.Write("Enter Monthly Salary: ");
                         salary = Math.Round(double.Parse(Console.ReadLine()),3);
-                        Console.WriteLine("The Monthly Salary set to: " + salary);
+                        Console.WriteLine("The Monthly Salary set to: " + salary.ToString("F3") + " OMR");
                         break;
 
                     case 8:
@@ -136,25 +136,25 @@ namespace BankingSystem
                     case 10:
                         Console.Write("enter last deposit amount: ");
                         deposit = Math.Round(double.Parse(Console.ReadLine()),3);
-                        Console.WriteLine("The last deposit amount set to: " + deposit);
+                        Console.WriteLine("The last deposit amount set to: " + deposit.ToString("F3")+" OMR");
                         break;
 
                     case 11:
                         Console.Write("enter last enter last withdrawal amount: ");
                         withdrawal = Math.Round(double.Parse(Console.ReadLine()), 3);
-                        Console.WriteLine("The last withdrawal amount set to: " + withdrawal);
+                        Console.WriteLine("The last withdrawal amount set to: " + withdrawal.ToString("F3") + " OMR");
                         break;
 
                     case 12:
                         Console.Write("Enter the annual interest rate: ");
                         annualRate = Math.Round(double.Parse(Console.ReadLine()), 3);
-                        Console.WriteLine("The annual interest rate set to: " + annualRate);
+                        Console.WriteLine("The annual interest rate set to: " + annualRate.ToString("F3") + " OMR");
                         break;
 
                     case 13:
                         Console.Write("Enter avg monthly balance: ");
                         avgBalance = Math.Round(double.Parse(Console.ReadLine()), 3);
-                        Console.WriteLine("The avg monthly balance set to: " + avgBalance);
+                        Console.WriteLine("The avg monthly balance set to: " + avgBalance.ToString("F3") + " OMR");
                         break;
 
                     default:
@@ -341,11 +341,45 @@ namespace BankingSystem
                                 case 1:
                                     Console.WriteLine(" holder Name: " + holderName);
                                     string receiptAccountNumber = accountNumber.ToString();
-
-
-                                    Console.WriteLine(" The account number: " + accountNumber);
+                                    string last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
+                                    string stars = "";
+                                    for (int i = 0; i < (receiptAccountNumber.Length-4); i++)
+                                    {
+                                        stars += "*";
+                                    }
+                                    string starsLast4 = stars + last4;
+                                    Console.WriteLine(" The account number: " + starsLast4);
+                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
                                     break;
 
+                                case 2:
+                                    Console.WriteLine(" holder Name: " + holderName);
+                                    receiptAccountNumber = accountNumber.ToString();
+                                    last4 = receiptAccountNumber.Substring(receiptAccountNumber.Length - 4);
+                                     stars = "";
+                                    for (int i = 0; i < (receiptAccountNumber.Length - 4); i++)
+                                    {
+                                        stars += "*";
+                                    }
+                                     starsLast4 = stars + last4;
+                                    Console.WriteLine(" The account number: " + starsLast4);
+                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
+                                    Console.WriteLine("Account Type set to: " + accountType);
+                                    Console.WriteLine("The age set to: " + age);
+                                    Console.WriteLine("The credit Score set to: " + creditScore);
+                                    Console.WriteLine("The avg monthly balance set to: " + avgBalance.ToString("F3") + " OMR");
+                                    Console.WriteLine("The annual interest rate set to: " + annualRate.ToString("F3") + " OMR");
+                                    Console.WriteLine("The last withdrawal amount set to: " + withdrawal.ToString("F3") + " OMR");
+                                    Console.WriteLine("The last deposit amount set to: " + deposit.ToString("F3") + " OMR");
+                                    if(isEmployed)
+                                        Console.WriteLine("Employed");
+                                    else
+                                        Console.WriteLine("Unemployed");
+                                    break;
+
+                                case 3:
+                                    Console.WriteLine(" The Balance: " + balance.ToString("F3") + " OMR ");
+                                    break;
 
 
 
