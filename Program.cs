@@ -467,14 +467,91 @@ namespace BankingSystem
                                                 Console.WriteLine("Surplus");
                                             else Console.WriteLine("Deficit");
                                             break;
+
                                         case 0:
                                             break; //later on will handle the return back case
+
                                         default:
                                             Console.WriteLine("Calculation not available");
                                             break;
                                             //break;
                                     }// inner switch Transaction calculator
-                                    break; 
+                                    break;
+                                //Account Types
+                                case 2:
+                                    Console.WriteLine("=== Account Types ===");
+                                    if (accountType == 'S')
+                                    {
+                                        Console.WriteLine(" Your account type: " + accountType + " (Savings Account) ");
+
+                                    }
+                                    else if (accountType == 'C') {
+
+                                        Console.WriteLine(" Your account type: " + accountType + " (Current Account) ");
+
+                                    }
+                                    else if (accountType == 'F')
+                                    {
+
+                                        Console.WriteLine(" Your account type: " + accountType + " (Fixed Deposit Account) ");
+
+                                    }
+                                    else if (accountType == 'J')
+                                    {
+
+                                        Console.WriteLine(" Your account type: " + accountType + " (Junior Account) ");
+
+                                    }
+
+                                    Console.WriteLine(" 1) Savings");
+                                    Console.WriteLine(" 2) Current");
+                                    Console.WriteLine(" 3) Fixed Deposit");
+                                    Console.WriteLine(" 4) Junior");
+                                    Console.WriteLine(" 0) Back");
+                                    Console.Write("Select type: ");
+                                    Backchoice2 = int.Parse(Console.ReadLine());
+                                    switch (Backchoice2) {
+                                        
+                                        case 1:
+                                            if (accountType == 'S') {
+                                                Console.WriteLine(" Savings Account");
+                                                Console.WriteLine(" Minimum balance: 100 OMR");
+                                                Console.WriteLine(" Monthly fee: 100 OMR");
+                                            }
+                                            break;
+                                        case 2:
+                                            if (accountType == 'C')
+                                            {
+                                                Console.WriteLine("Current Account");
+                                                Console.WriteLine(" Minimum balance: 500 OMR");
+                                                Console.WriteLine(" Monthly fee: 3 OMR");
+                                            }
+                                            break;
+
+                                        case 3:
+                                            if (accountType == 'F')
+                                            {
+                                                Console.WriteLine(" Fixed Deposit Account");
+                                                Console.WriteLine(" Minimum balance: 1000 OMR");
+                                                Console.WriteLine(" Monthly fee: 0 OMR");
+                                            }
+                                            break;
+
+                                        case 4:
+                                            if (accountType == 'J')
+                                            {
+                                                Console.WriteLine(" Junior Account");
+                                                Console.WriteLine(" Minimum balance: 50 OMR");
+                                                Console.WriteLine(" Monthly fee: 0 OMR");
+                                            }
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Account type not offered.");
+                                            break;
+
+                                    }
+                                    break;
                             } // outer switch account management case 2
 
                             break;
