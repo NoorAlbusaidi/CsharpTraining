@@ -1,4 +1,6 @@
-﻿using System.Transactions;
+﻿using System.Net.NetworkInformation;
+using System.Numerics;
+using System.Transactions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BankingSystem
@@ -188,7 +190,9 @@ namespace BankingSystem
                 while (module != 0) {
 
                     switch (module) {
+                        // atm services
                         case 1:
+                            
                             Console.WriteLine("=== ATM Services ===");
                             Console.WriteLine("1) Bank Info");
                             Console.WriteLine("2) Branch Info");
@@ -196,7 +200,7 @@ namespace BankingSystem
                             Console.WriteLine("0) Back to Main Menu");
                             Console.Write("Select: ");
                             choice = int.Parse(Console.ReadLine());
-                            //while(chioce>=0 && chioce<=3)
+                          
                             switch (choice) {
                                 
                                 case 1:
@@ -268,13 +272,85 @@ namespace BankingSystem
                                 default:
                                     Console.WriteLine("Field not available.");
                                     break;
-                            }
+                            }//inner switch
                             break;
 
                         case 3:
+                            const string CORRECT_PIN = "4821";
+                            const int MAX_ATTEMPTS = 3;
+                            Console.WriteLine("=== Authentication ===");
+                            Console.WriteLine("1)  Enter PIN");
+                            Console.WriteLine("2) Forgot PIN");
+                            Console.WriteLine("0) Back to main menue");
+                            Console.Write("Select: ");
+                            choice = int.Parse(Console.ReadLine());
 
+                            switch (choice) {
+                                case 1:
+                                    
+                                    Console.Write("Enter your PIN: ");
+                                    string pinInput = "";
+
+                                    //ConsoleKeyInfo (get information about the pressed key) = object that contains details about the key.
+                                    ConsoleKeyInfo key;
+                                    do
+                                    {
+                                        //Waits for the user to press one key. true: don’t display it
+                                        key = Console.ReadKey(true);
+                                        //KeyChar:  letters / numbers
+                                        // to not accept other than numbers and letters
+                                        if (char.IsLetterOrDigit(key.KeyChar))
+                                        {
+                                            pinInput += key.KeyChar;
+                                            Console.Write("*");
+                                        }
+                                        
+                                        /*
+                                        Keep repeating until the user presses Enter
+                                        key.Key = The key the user pressed. key.key to detect the special char like enter
+                                        Represents the Enter key
+                                        */
+                                    } while (key.Key != ConsoleKey.Enter);
+
+                                    Console.WriteLine();
+                                    if (pinInput == CORRECT_PIN)
+                                        Console.WriteLine("Access granted. Welcome, " + holderName);
+                                    else if (pinInput.Length != 4)
+                                        Console.WriteLine("Invalid PIN format ");
+                                    else
+                                        Console.WriteLine("Incorrect PIN ");
+                                    break;
+
+                                case 2:
+                                    Console.WriteLine("Please visit the nearest branch with your National ID.");
+                                    break;
+                                case 0:
+                                    break;
+                            }//inner switch
                             break;
 
+                        case 4:
+                            Console.WriteLine("=== PRINT RECEIPT ===");
+                            Console.WriteLine("1)  Short Receipt");
+                            Console.WriteLine("2)  Detailed Receip");
+                            Console.WriteLine("3)  Balance Only");
+                            Console.WriteLine("0) Back to main menue");
+                            Console.Write("Select format: ");
+                            choice = int.Parse(Console.ReadLine());
+                            switch (choice) {
+                                case 1:
+                                    Console.WriteLine(" holder Name: " + holderName);
+                                    string receiptAccountNumber = accountNumber.ToString();
+
+
+                                    Console.WriteLine(" The account number: " + accountNumber);
+                                    break;
+
+
+
+
+                            }
+                            break;
                     }// outer switch
 
                     // choice is the common variable and means go back to main menue in all cases 
